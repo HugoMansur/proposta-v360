@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelig&ecirc;ncia de Pr&eacute;-Vendas &mdash; Proposta Comercial V360</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===========================================
+           V360 BRAND — LIGHT THEME
+           Purple #391B54 + Orange #FF5C13
+           Inspired by clean card-based design
+           =========================================== */
+        :root {
+            --purple: #391B54;
+            --purple-mid: #4A2568;
+            --purple-light: #783DBC;
+            --orange: #FF5C13;
+            --orange-soft: #FFF0EA;
+            --lavender: #F3F0F7;
+            --lavender-deep: #EBE5F3;
+            --muted: #7B6E8A;
+            --shadow: rgba(57, 27, 84, 0.1);
+
+            --bg: #F3F0F7;
+            --bg-white: #FFFFFF;
+            --bg-dark: #391B54;
+            --text: #391B54;
+            --text-light: #FFFFFF;
+            --text-muted: #7B6E8A;
+
+            --font-h: 'Ubuntu', sans-serif;
+            --font-b: 'Inter', sans-serif;
+
+            --ts-title: clamp(2rem, 5.5vw, 4.5rem);
+            --ts-h2: clamp(1.15rem, 2.8vw, 2rem);
+            --ts-h3: clamp(0.95rem, 1.8vw, 1.3rem);
+            --ts-body: clamp(0.78rem, 1.3vw, 1rem);
+            --ts-small: clamp(0.62rem, 0.95vw, 0.82rem);
+            --ts-label: clamp(0.52rem, 0.8vw, 0.68rem);
+            --ts-big: clamp(3rem, 10vw, 8rem);
+
+            --pad: clamp(1.5rem, 5vw, 5rem);
+            --gap: clamp(0.8rem, 2vw, 2rem);
+            --r: clamp(16px, 2.5vw, 30px);
+            --r-pill: 100px;
+
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+            --dur: 0.6s;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-snap-type: y mandatory; height: 100%; overflow-x: hidden; }
+        body { font-family: var(--font-b); background: var(--bg); color: var(--text); overflow-x: hidden; height: 100%; -webkit-font-smoothing: antialiased; }
+
+        /* SLIDES */
+        .slide {
+            width: 100vw; height: 100vh; height: 100dvh;
+            padding: var(--pad);
+            scroll-snap-align: start;
+            display: flex; flex-direction: column; justify-content: center;
+            position: relative; overflow: hidden;
+            background: var(--bg);
+        }
+        .slide.white { background: var(--bg-white); }
+        .slide.dark { background: var(--bg-dark); color: var(--text-light); }
+
+        .slide-content { flex:1; display:flex; flex-direction:column; justify-content:center; max-height:100%; overflow:hidden; }
+
+        /* TYPO */
+        h1 { font-family:var(--font-h); font-size:var(--ts-title); font-weight:700; line-height:1.08; letter-spacing:-0.02em; color:var(--text); }
+        .slide.dark h1 { color:var(--text-light); }
+        h2 { font-family:var(--font-h); font-size:var(--ts-h2); font-weight:600; line-height:1.2; color:var(--text); }
+        .slide.dark h2 { color:var(--text-light); }
+        h3 { font-family:var(--font-h); font-size:var(--ts-h3); font-weight:600; line-height:1.25; color:var(--text); }
+        p,li { font-family:var(--font-b); font-size:var(--ts-body); line-height:1.55; color:var(--text-muted); }
+        .slide.dark p,.slide.dark li { color:rgba(255,255,255,0.7); }
+
+        .label { font-family:var(--font-h); font-size:var(--ts-label); font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--purple-mid); opacity:0.6; }
+        .slide.dark .label { color:var(--orange); opacity:1; }
+
+        .big-num { font-family:var(--font-h); font-weight:700; font-size:var(--ts-big); line-height:1; letter-spacing:-0.04em; color:var(--purple); }
+        .slide.dark .big-num { color:var(--orange); }
+
+        /* CARDS */
+        .card { background:var(--bg-white); border-radius:var(--r); padding:clamp(0.8rem,2vw,1.8rem); box-shadow:0 4px 20px var(--shadow); }
+        .card.orange { background:var(--orange); color:var(--text-light); }
+        .card.orange h3,.card.orange p,.card.orange li { color:var(--text-light); }
+        .card.orange p { opacity:0.85; }
+        .card.orange-soft { background:var(--orange-soft); }
+        .card.purple { background:var(--purple); color:var(--text-light); }
+        .card.purple h3,.card.purple p,.card.purple li { color:var(--text-light); }
+        .card.purple p { opacity:0.8; }
+        .card.outline { background:transparent; border:2px solid rgba(57,27,84,0.1); box-shadow:none; }
+
+        /* BADGES */
+        .badge { display:inline-block; padding:clamp(0.15rem,0.3vw,0.25rem) clamp(0.5rem,0.8vw,0.7rem); border-radius:var(--r-pill); font-family:var(--font-h); font-size:var(--ts-label); font-weight:700; letter-spacing:0.04em; text-transform:uppercase; }
+        .badge.ok { background:var(--lavender-deep); color:var(--purple); }
+        .badge.hot { background:var(--orange); color:var(--text-light); }
+        .badge.new { background:var(--purple); color:var(--text-light); }
+
+        /* LAYOUTS */
+        .split { display:grid; grid-template-columns:1fr 1fr; gap:clamp(1rem,2.5vw,2.5rem); align-items:center; }
+        .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(0.5rem,1.2vw,1rem); }
+        .grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(0.5rem,1.2vw,1rem); }
+        .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(0.5rem,1.2vw,1rem); }
+        .stack { display:flex; flex-direction:column; gap:clamp(0.3rem,0.6vw,0.5rem); }
+        .stack-lg { display:flex; flex-direction:column; gap:var(--gap); }
+        .center { text-align:center; }
+
+        /* BULLETS */
+        .bullets { list-style:none; display:flex; flex-direction:column; gap:clamp(0.2rem,0.5vw,0.4rem); }
+        .bullets li { padding-left:clamp(0.7rem,1vw,0.9rem); position:relative; font-size:var(--ts-body); }
+        .bullets li::before { content:""; position:absolute; left:0; top:0.6em; width:clamp(4px,0.4vw,5px); height:clamp(4px,0.4vw,5px); border-radius:50%; background:var(--orange); }
+
+        /* TIMELINE */
+        .timeline-h { display:flex; gap:clamp(0.5rem,1vw,1rem); }
+        .phase { flex:1; border-radius:var(--r); padding:clamp(0.8rem,1.5vw,1.5rem); display:flex; flex-direction:column; gap:clamp(0.2rem,0.4vw,0.4rem); }
+        .phase.now { background:var(--purple); color:var(--text-light); box-shadow:0 8px 30px rgba(57,27,84,0.25); }
+        .phase.now h3,.phase.now p { color:var(--text-light); }
+        .phase.now p { opacity:0.8; }
+        .phase.next { background:var(--bg-white); box-shadow:0 2px 12px var(--shadow); }
+        .phase-label { font-family:var(--font-h); font-size:var(--ts-label); font-weight:700; text-transform:uppercase; letter-spacing:0.1em; opacity:0.5; }
+        .phase.now .phase-label { color:var(--orange); opacity:1; }
+
+        /* SHEET (spreadsheet-style table) */
+        .sheet { background:var(--bg-white); border-radius:var(--r); box-shadow:0 4px 24px var(--shadow); overflow:hidden; border:1px solid rgba(57,27,84,0.06); }
+        .sheet-bar { background:var(--lavender-deep); padding:clamp(0.3rem,0.5vw,0.5rem) clamp(0.6rem,1vw,1rem); display:flex; align-items:center; gap:clamp(0.3rem,0.5vw,0.5rem); border-bottom:1px solid rgba(57,27,84,0.06); }
+        .sheet-dot { width:clamp(6px,0.5vw,8px); height:clamp(6px,0.5vw,8px); border-radius:50%; }
+        .sheet-dot.r { background:#FF6B6B; } .sheet-dot.y { background:#FFD93D; } .sheet-dot.g { background:#6BCB77; }
+        .sheet-title { font-family:var(--font-h); font-size:var(--ts-small); font-weight:600; color:var(--purple); margin-left:clamp(0.3rem,0.5vw,0.5rem); }
+        .sheet table { width:100%; border-collapse:collapse; font-size:var(--ts-small); }
+        .sheet th { background:var(--lavender); font-family:var(--font-h); font-weight:700; color:var(--purple); text-align:left; padding:clamp(0.3rem,0.5vw,0.5rem) clamp(0.4rem,0.6vw,0.6rem); border-bottom:2px solid rgba(57,27,84,0.1); font-size:var(--ts-label); text-transform:uppercase; letter-spacing:0.04em; white-space:nowrap; }
+        .sheet td { padding:clamp(0.25rem,0.4vw,0.4rem) clamp(0.4rem,0.6vw,0.6rem); border-bottom:1px solid rgba(57,27,84,0.04); color:var(--text); white-space:nowrap; }
+        .sheet tr:last-child td { border-bottom:none; }
+        .sheet .hl { color:var(--purple); font-weight:700; }
+        .sheet .acc { color:var(--orange); font-weight:600; }
+
+        /* EMAIL PREVIEW */
+        .email-box { background:var(--bg-white); border-radius:var(--r); box-shadow:0 4px 24px var(--shadow); overflow:hidden; border:1px solid rgba(57,27,84,0.06); max-width:min(90vw, 700px); }
+        .email-bar { background:var(--lavender-deep); padding:clamp(0.3rem,0.5vw,0.5rem) clamp(0.6rem,1vw,1rem); display:flex; align-items:center; gap:clamp(0.3rem,0.5vw,0.5rem); border-bottom:1px solid rgba(57,27,84,0.06); font-size:var(--ts-label); color:var(--text-muted); }
+        .email-body-text { padding:clamp(0.6rem,1.2vw,1.2rem); font-size:var(--ts-body); line-height:1.6; color:var(--text); }
+        .email-body-text em { color:var(--orange); font-style:normal; font-weight:600; }
+
+        /* FLOW */
+        .flow { display:flex; align-items:center; gap:clamp(0.3rem,0.8vw,0.8rem); justify-content:center; flex-wrap:wrap; }
+        .flow-step { background:var(--bg-white); border-radius:var(--r); padding:clamp(0.6rem,1.2vw,1rem) clamp(0.8rem,1.5vw,1.4rem); box-shadow:0 2px 12px var(--shadow); text-align:center; min-width:clamp(90px,14vw,160px); }
+        .flow-step.accent { background:var(--orange); color:var(--text-light); }
+        .flow-step.accent strong,.flow-step.accent span { color:var(--text-light); }
+        .flow-step strong { display:block; font-family:var(--font-h); font-size:var(--ts-body); font-weight:700; color:var(--text); }
+        .flow-step span { font-size:var(--ts-small); color:var(--text-muted); }
+        .flow-arrow { font-size:clamp(1rem,2vw,1.5rem); color:var(--purple); opacity:0.3; }
+
+        /* PRICING */
+        .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(0.5rem,1.2vw,1rem); max-width:min(90vw,800px); }
+        .pricing-card { background:var(--bg-white); border-radius:var(--r); padding:clamp(0.8rem,1.5vw,1.5rem); box-shadow:0 4px 20px var(--shadow); text-align:center; }
+        .pricing-card.featured { background:var(--orange); color:var(--text-light); box-shadow:0 8px 30px rgba(255,92,19,0.25); }
+        .pricing-card .price { font-family:var(--font-h); font-weight:700; font-size:clamp(1.2rem,2.5vw,2rem); color:var(--purple); margin:clamp(0.3rem,0.5vw,0.5rem) 0; }
+        .pricing-card.featured .price { color:var(--text-light); }
+        .pricing-card .price-label { font-size:var(--ts-small); color:var(--text-muted); }
+        .pricing-card.featured .price-label { color:rgba(255,255,255,0.8); }
+
+        /* CHECKLIST */
+        .checklist { list-style:none; display:flex; flex-direction:column; gap:clamp(0.3rem,0.8vh,0.6rem); }
+        .checklist li { display:flex; align-items:flex-start; gap:clamp(0.4rem,0.8vw,0.6rem); font-size:var(--ts-body); color:var(--text); }
+        .checklist li::before { content:"☐"; flex-shrink:0; color:var(--orange); font-size:var(--ts-body); }
+
+        /* NAV */
+        .progress-bar { position:fixed; top:0; left:0; height:3px; background:var(--purple); z-index:1000; transition:width 0.3s ease; width:0%; }
+        .nav-dots { position:fixed; right:clamp(0.5rem,1.5vw,1.5rem); top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:clamp(4px,0.5vw,8px); z-index:100; }
+        .nav-dot { width:clamp(6px,0.6vw,8px); height:clamp(6px,0.6vw,8px); border-radius:50%; background:rgba(57,27,84,0.15); cursor:pointer; transition:all 0.3s ease; border:none; padding:0; }
+        .nav-dot.active { background:var(--purple); transform:scale(1.5); }
+        .keyboard-hint { position:fixed; bottom:clamp(0.5rem,1.5vw,1.5rem); left:50%; transform:translateX(-50%); font-size:var(--ts-label); color:rgba(57,27,84,0.2); z-index:100; }
+
+        /* LOGO */
+        .logo { position:absolute; top:clamp(0.75rem,2vh,1.5rem); left:var(--pad); height:clamp(1.1rem,2vw,1.6rem); opacity:0.7; }
+        .slide.dark .logo { opacity:0.9; filter:brightness(10); }
+        .logo-cover { height:clamp(2rem,5vw,3.5rem); margin-bottom:clamp(0.5rem,1.5vh,1rem); }
+
+        /* ANIMATION */
+        .reveal { opacity:0; transform:translateY(20px); transition:opacity var(--dur) var(--ease), transform var(--dur) var(--ease); }
+        .slide.visible .reveal { opacity:1; transform:translateY(0); }
+        .reveal:nth-child(1){transition-delay:0.05s} .reveal:nth-child(2){transition-delay:0.15s} .reveal:nth-child(3){transition-delay:0.25s} .reveal:nth-child(4){transition-delay:0.35s} .reveal:nth-child(5){transition-delay:0.45s}
+
+        /* Stagger for transition slide */
+        .stagger { opacity:0; transform:translateX(-20px); transition:opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+        .slide.visible .stagger:nth-child(1){opacity:1;transform:translateX(0);transition-delay:0.15s;}
+        .slide.visible .stagger:nth-child(2){opacity:1;transform:translateX(0);transition-delay:0.4s;}
+        .slide.visible .stagger:nth-child(3){opacity:1;transform:translateX(0);transition-delay:0.65s;}
+        .slide.visible .stagger:nth-child(4){opacity:1;transform:translateX(0);transition-delay:0.9s;}
+
+        /* RESPONSIVE */
+        @media(max-height:700px){:root{--pad:clamp(0.75rem,3vw,2rem);--gap:clamp(0.4rem,1.5vw,1rem);--ts-title:clamp(1.5rem,4.5vw,2.5rem);--ts-big:clamp(2.5rem,8vw,5rem);}}
+        @media(max-height:600px){:root{--pad:clamp(0.5rem,2.5vw,1.5rem);--ts-title:clamp(1.2rem,4vw,2rem);--ts-body:clamp(0.7rem,1.2vw,0.95rem);--ts-big:clamp(2rem,7vw,4rem);}.nav-dots,.keyboard-hint{display:none;}}
+        @media(max-height:500px){:root{--pad:clamp(0.4rem,2vw,1rem);--ts-title:clamp(1rem,3.5vw,1.5rem);--ts-big:clamp(1.5rem,6vw,3rem);}}
+        @media(max-width:768px){.split,.grid-4,.pricing-grid{grid-template-columns:1fr;gap:clamp(0.5rem,2vw,1rem);}.grid-3{grid-template-columns:1fr 1fr;}.timeline-h{flex-direction:column;}.flow{flex-direction:column;}.flow-arrow{transform:rotate(90deg);}}
+        @media(max-width:600px){.grid-3,.grid-2{grid-template-columns:1fr;}}
+        @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.2s!important;}html{scroll-behavior:auto;}}
+    </style>
+</head>
+<body>
+
+    <div class="progress-bar" id="progressBar"></div>
+    <nav class="nav-dots" id="navDots"></nav>
+    <div class="keyboard-hint">← → para navegar</div>
+
+    <!-- ═══════════════════════════════════════
+         1. CAPA
+         ═══════════════════════════════════════ -->
+    <section class="slide white" id="s1">
+        <div class="slide-content center" style="justify-content:center;align-items:center;">
+            <p class="label reveal">PROPOSTA COMERCIAL &mdash; MAR&Ccedil;O 2026</p>
+            <img src="https://latamlist.com/wp-content/uploads/2025/03/V360-logo.png" alt="V360" class="logo-cover reveal">
+            <h1 class="reveal">Intelig&ecirc;ncia de<br>Pr&eacute;-Vendas</h1>
+            <div class="reveal" style="width:clamp(40px,6vw,60px);height:4px;background:var(--orange);border-radius:2px;margin:clamp(0.5rem,1vw,1rem) auto;"></div>
+            <p class="reveal" style="color:var(--text-muted);font-size:var(--ts-body);">Hugo Mansur</p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         2. O HOOK — numero grande
+         ═══════════════════════════════════════ -->
+    <section class="slide dark" id="s2">
+        <img src="https://latamlist.com/wp-content/uploads/2025/03/V360-logo.png" alt="V360" class="logo">
+        <div class="slide-content center" style="justify-content:center;align-items:center;">
+            <p class="label reveal">O MOMENTO</p>
+            <div class="big-num reveal">4 &rarr; 12</div>
+            <h2 class="reveal" style="max-width:550px;margin:0 auto;">AEs este ano. O topo do funil<br>precisa escalar junto.</h2>
+            <p class="reveal" style="max-width:500px;margin:clamp(0.3rem,0.5vw,0.5rem) auto 0;font-size:var(--ts-body);">
+                Meta 2026: R$ 90M de receita cont&aacute;bil (~80% crescimento YoY). Se o pipeline n&atilde;o acompanha o time de vendas, os novos AEs ficam ociosos.
+            </p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         3. CENARIO ATUAL — metricas
+         ═══════════════════════════════════════ -->
+    <section class="slide white" id="s3">
+        <img src="https://latamlist.com/wp-content/uploads/2025/03/V360-logo.png" alt="V360" class="logo">
+        <div class="slide-content stack-lg">
+            <div class="reveal">
+                <p class="label">CEN&Aacute;RIO ATUAL</p>
+                <h2>N&uacute;meros do funil hoje</h2>
+            </div>
+            <div class="grid-3 reveal">
+                <div class="card center">
+                    <div style="font-family:var(--font-h);font-weight:700;font-size:clamp(1.5rem,3vw,2.2rem);color:var(--purple);">80%</div>
+                    <p>da receita vem de<br>outbound</p>
+                </div>
+                <div class="card center">
+                    <div style="font-family:var(--font-h);font-weight:700;font-size:clamp(1.5rem,3vw,2.2rem);color:var(--purple);">10 BDRs</div>
+                    <p>6 rampados, meta de<br>8 discoveries/mes cada</p>
+                </div>
+                <div class="card center">
+                    <div style="font-family:var(--font-h);font-weight:700;font-size:clamp(1.5rem,3vw,2.2rem);color:var(--purple);">60</div>
+                    <p>contas trabalhadas por<br>BDR por mes</p>
+                </div>
+            </div>
+            <div class="grid-3 reveal" style="max-width:min(90vw,800px);">
+                <div class="card orange-soft center">
+                    <div style="font-family:var(--font-h);font-weight:700;font-size:clamp(1.3rem,2.5vw,1.8rem);color:var(--orange);">25%</div>
+                    <p style="color:var(--text);">convers&atilde;o conta &rarr; SQL<br><strong style="color:var(--orange);">aqui est&aacute; o gargalo</strong></p>
+                </div>
+                <div class="card center" style="border:2px solid rgba(57,27,84,0.15);">
+                    <div style="font-family:var(--font-h);font-weight:700;font-size:clamp(1.3rem,2.5vw,1.8rem);color:var(--purple);">75%</div>
+                    <p>SQL &rarr; Discovery<br><strong style="color:var(--purple);">o time converte bem</strong></p>
+                </div>
+                <div class="card center">
+                    <div style="font-family:var(--font-h);font-weight:700;font-size:clamp(1.3rem,2.5vw,1.8rem);color:var(--purple);">9%</div>
+                    <p>close rate<br>(era 7% em 2024)</p>
+                </div>
+            </div>
+            <p class="reveal center" style="font-size:var(--ts-small);color:var(--text-muted);">O time &eacute; forte de SQL pra frente (75% vira Discovery). O gargalo est&aacute; antes: transformar conta em SQL. &Eacute; a&iacute; que o projeto atua.</p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         4. TRES GARGALOS
+         ═══════════════════════════════════════ -->
+    <section class="slide" id="s4">
+        <img src="https://latamlist.com/wp-content/uploads/2025/03/V360-logo.png" alt="V360" class="logo">
+        <div class="slide-content stack-lg">
+            <div class="reveal">
+                <p class="label">DIAGN&Oacute;STICO</p>
+                <h2>Tr&ecirc;s gargalos que limitam o topo do funil</h2>
+            </div>
+            <div class="grid-3 reveal">
+                <div class="card" style="border-top:4px solid var(--orange);">
+                    <span class="badge hot">1</span>
+                    <h3 style="margin-top:0.4em;">Contactabilidade</h3>
+                    <p>Telefones e e-mails que n&atilde;o convertem. Dificuldade de conseguir contatos v&aacute;lidos que gerem intera&ccedil;&atilde;o. O BDR manda mensagem e ela nem chega.</p>
+                </div>
+                <div class="card" style="border-top:4px solid var(--orange);">
+                    <span class="badge hot">2</span>
+                    <h3 style="margin-top:0.4em;">Prioriza&ccedil;&atilde;o gen&eacute;rica</h3>
+                    <p>A Cortex qualifica por ICP (faturamento, funcion&aacute;rios), mas n&atilde;o indica quem atacar primeiro e por qu&ecirc;. O BDR pega a lista e ataca de cima para baixo, sem crit&eacute;rio de dor.</p>
+                </div>
+                <div class="card" style="border-top:4px solid var(--orange);">
+                    <span class="badge hot">3</span>
+                    <h3 style="margin-top:0.4em;">Trabalho operacional</h3>
+                    <p>40 minutos de pesquisa antes da primeira liga&ccedil;&atilde;o. Achar contato, email, telefone, ERP. O BDR n&atilde;o &eacute; improdutivo &mdash; est&aacute; preso em trabalho de m&aacute;quina.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         5. O QUE JA EXISTE
+         ═══════════════════════════════════════ -->
+    <section class="slide white" id="s5">
+        <img src="https://latamlist.com/wp-content/uploads/2025/03/V360-logo.png" alt="V360" class="logo">
+        <div class="slide-content stack-lg" style="align-items:center;text-align:center;">
+            <div class="reveal">
+                <p class="label">O QUE J&Aacute; EXISTE</p>
+                <h2 style="max-width:600px;margin:0 auto;">As pe&ccedil;as est&atilde;o na mesa &mdash; falta o layer que conecta</h2>
+            </div>
+            <div class="grid-4 reveal" style="max-width:900px;width:100%;text-align:left;">
+                <div class="card">
+                    <h3>Cortex</h3>
+                    <p>ICP, qualifica&ccedil;&atilde;o e orquestra&ccedil;&atilde;o de contas. Bom pra dizer SE &eacute; fit.</p>
+                </div>
+                <div class="card">
+                    <h3>Apollo</h3>
+                    <p>Enriquecimento de contatos e telefone. Nem sempre encontra.</p>
+                </div>
+                <div class="card">
+                    <h3>CRM</h3>
+                    <p>Hist&oacute;rico rico de contas e contatos. Centenas de retomadas poss&iacute;veis.</p>
+                </div>
+                <div class="card">
+                    <h3>LDR</h3>
+                    <p>Intelig&ecirc;ncia manual acompanhando distribui&ccedil;&atilde;o. N&atilde;o escala pra 12 AEs.</p>
+                </div>
+            </div>
+            <p class="reveal" style="max-width:550px;color:var(--orange);font-weight:600;font-size:var(--ts-body);">
+                N&atilde;o &eacute; pra substituir nada. &Eacute; pra somar uma camada que diz pro BDR: fale com ESSA empresa, com ESSA pessoa, por ESSE motivo.
+            </p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         6. TRANSICAO — stagger
+         ═══════════════════════════════════════ -->
+    <section class="slide dark" id="s6">
+        <img src="https://latamlist.com/wp-content/uploads/2025/03/V360-logo.png" alt="V360" class="logo">
+        <div class="slide-content" style="justify-content:center;max-width:750px;">
+            <p class="stagger" style="color:rgba(255,255,255,0.5);font-size:var(--ts-h3);font-family:var(--font-h);font-weight:600;">Falta a pe&ccedil;a que diz pro BDR:</p>
+            <h1 class="stagger" style="font-size:clamp(1.3rem,3.5vw,2.8rem);margin-top:clamp(0.5rem,1.5vh,1rem);">
+                Fale com <span style="color:var(--orange);">ESSA</span> empresa.<br>
+                Com <span style="color:var(--orange);">ESSA</span> pessoa.<br>
+                Por <span style="color:var(--orange);">ESSE</span> motivo.
+            </h1>
+            <p class="stagger" style="margin-top:var(--gap);max-width:550px;">
+                O projeto conecta os dados que voc&ecirc;s j&aacute; t&ecirc;m com sinais p&uacute;blicos que ningu&eacute;m no Brasil est&aacute; usando pra pr&eacute;-vendas enterprise. O resultado: cada BDR recebe um dossi&ecirc; pronto com as contas que mais doem, os contatos certos e uma sugest&atilde;o de abordagem personalizada.
+            </p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         7. PILAR 1 — PRIORIZACAO POR DOR
+         ═══════════════════════════════════════ -->
+    <section class="slide" id="s7">
+        <img src="https://latamlist.com/wp-content/uploads/2025/03/V360-logo.png" alt="V360" class="logo">
+        <div class="slide-content stack-lg">
+            <div class="reveal">
+                <p class="label">01 &mdash; PRIORIZA&Ccedil;&Atilde;O POR DOR</p>
+                <h2>Ao inv&eacute;s de 60 contas aleat&oacute;rias, 60 contas ranqueadas por dor</h2>
+            </div>
+            <p class="reveal" style="max-width:650px;">Esses sinais foram discutidos com o Iza&iacute;as na call de fevereiro. S&atilde;o dados p&uacute;blicos que indicam falta de automa&ccedil;&atilde;o &mdash; exatamente a dor que a V360 resolve.</p>
+            <div class="grid-2 reveal" style="max-width:min(90vw,800px);">
+                <div class="card">
+                    <span class="badge ok">validado pelo Iza&iacute;as</span>
+                    <h3 style="margin-top:0.4em;">Protestos em cart&oacute;rio</h3>
+                    <p>Consultando o CNPJ, a gente v&ecirc; protestos <strong style="color:var(--text);">contra a empresa</strong> (empresa como devedora). Retorna quem protestou, o valor e a data. Empresa de R$ 800M com protesto de R$ 1.500 de transportadora = falta de processo, n&atilde;o de dinheiro.</p>
+                    <p style="margin-top:0.3em;font-size:var(--ts-small);color:var(--text-muted);">Dados detalhados (credor + valor) confirmados via API pra SP. Outros estados retornam exist&ecirc;ncia, sem detalhe.</p>
+                </div>
+                <div class="card">
+                    <span class="badge ok">validado pelo Iza&iacute;as</span>
+                    <h3 style="margin-top:0.4em;">Vagas abertas no fiscal</h3>
+                    <p>Se a empresa est&aacute; contratando assistente fiscal, a equipe est&aacute; sobrecarregada ou operando de forma manual. O Job Description revela o dia a dia do time &mdash; se cita processo manual, &eacute; oportunidade.</p>
+                </div>
+                <div class="card">
+                    <span class="badge ok">validado pelo Iza&iacute;as</span>
+                    <h3 style="margin-top:0.4em;">Processos no CARF</h3>
+                    <p>Segunda inst&acirc;ncia tribut&aacute;ria. Foco em tributos espec&iacute;ficos (PIS/COFINS, obriga&ccedil;&otilde;es acess&oacute;rias) &mdash; ICMS gen&eacute;rico n&atilde;o diz muita coisa pra V360.</p>
+                </div>
+                <div class="card">
+                    <h3>ERP identificado</h3>
+                    <p>Saber se a empresa usa SAP, TOTVS ou Dynamics muda a abordagem. Quem integra nativamente com a V360 vai pro topo da lista.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         8. PILAR 2 — DOSSIE PRONTO
+         ═══════════════════════════════════════ -->
+    <section class="slide white" id="s8">
+        <img src="https://latamlist.com/wp-content/uploads/2025/03/V360-logo.png" alt="V360" class="logo">
+        <div class="slide-content stack-lg">
+            <div class="reveal">
+                <p class="label">02 &mdash; DOSSI&Ecirc; PRONTO</p>
+                <h2>O BDR abre e liga. 5 minutos em vez de 40.</h2>
+            </div>
+            <p class="reveal" style="max-width:650px;">Power Map &eacute; um ponto a melhorar hoje. Pra cada conta, a gente j&aacute; entrega quem &eacute; o fiscal, quem &eacute; o financeiro e quem &eacute; o TI que cuida do ERP. O BDR entra na conta sabendo com quem falar.</p>
+            <div class="grid-2 reveal" style="max-width:min(90vw,800px);">
+                <div class="card orange-soft">
+                    <h3>Buying committee mapeado</h3>
+                    <p style="color:var(--text);">3 contatos por empresa: cargo, LinkedIn, email validado. Cascateamento de fontes pra garantir abrang&ecirc;ncia &mdash; se uma n&atilde;o encontra, a outra encontra.</p>
+                </div>
+                <div class="card orange-soft">
+                    <h3>Power map automatico</h3>
+                    <p style="color:var(--text);">Quem s&atilde;o os influenciadores do processo? O TI que cuida do ERP, o diretor financeiro, o coordenador fiscal. Mapeados antes do primeiro contato.</p>
+                </div>
+                <div class="card">
+                    <h3>ERP + contexto da empresa</h3>
+                    <p>&ldquo;Sei que voc&ecirc; usa SAP, da &uacute;ltima vez que a gente falou voc&ecirc; estava nesse est&aacute;gio.&rdquo; &mdash; Esse tipo de contexto muda a conversa.</p>
+                </div>
+                <div class="card">
+                    <h3>Sugest&atilde;o de abordagem</h3>
+                    <p>Todos os dados consolidados + mensagem sugerida. O BDR revisa e dispara. Controle de qualidade humano no come&ccedil;o, automa&ccedil;&atilde;o depois.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         9. PILAR 3 — PERSONALIZACAO
+         ═══════════════════════════════════════ -->
+    <section class="slide" id="s9">
+        <img src="https://latamlist.com/wp-content/uploads/2025/03/V360-logo.png" alt="V360" class="logo">
+        <div class="slide-content stack-lg">
+            <div class="reveal">
+                <p class="label">03 &mdash; PERSONALIZA&Ccedil;&Atilde;O</p>
+                <h2>A pessoa l&ecirc; e pensa: fizeram a li&ccedil;&atilde;o de casa</h2>
+            </div>
+            <p class="reveal" style="max-width:650px;">Com os dados enriquecidos (ERP, vagas, protestos), a gente monta mensagens que falam da dor do dia a dia do contato &mdash; n&atilde;o not&iacute;cias gen&eacute;ricas da empresa.</p>
+            <div class="split reveal" style="max-width:min(90vw,850px);">
+                <div class="email-box">
+                    <div class="email-bar">
+                        <span class="sheet-dot r"></span><span class="sheet-dot y"></span><span class="sheet-dot g"></span>
+                        <span style="margin-left:0.3em;">Para: coord.fiscal@empresa.com.br</span>
+                    </div>
+                    <div class="email-body-text">
+                        Oi Marcos, vi que voc&ecirc;s usam <em>TOTVS Protheus</em> e t&ecirc;m <em>3 vagas abertas pra assistente fiscal</em>. A V360 integra nativamente com Protheus e resolve exatamente esse gargalo de volume na &aacute;rea fiscal.<br><br>
+                        Faz sentido 15 minutos essa semana?
+                    </div>
+                </div>
+                <div class="stack" style="gap:var(--gap);">
+                    <div class="card center">
+                        <div style="font-family:var(--font-h);font-weight:700;font-size:clamp(1.5rem,3vw,2.5rem);color:var(--orange);">7,5%</div>
+                        <p>taxa de resposta com<br>mensagens personalizadas</p>
+                    </div>
+                    <div class="card center">
+                        <div style="font-family:var(--font-h);font-weight:700;font-size:clamp(1.5rem,3vw,2.5rem);color:var(--text-muted);">1-2%</div>
+                        <p>benchmark de mercado<br>com mensagens genericas</p>
+                    </div>
+                    <p style="font-size:var(--ts-small);color:var(--orange);font-weight:600;text-align:center;">Quick win: retomadas do CRM com dados enriquecidos. Voc&ecirc;s j&aacute; t&ecirc;m centenas de contas com hist&oacute;rico.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         10. IMPACTO NO FUNIL
+         ═══════════════════════════════════════ -->
+    <section class="slide white" id="s10">
+        <img src="https://latamlist.com/wp-content/uploads/2025/03/V360-logo.png" alt="V360" class="logo">
+        <div class="slide-content stack-lg">
+            <div class="reveal">
+                <p class="label">IMPACTO POTENCIAL</p>
+                <h2>Estimativas conservadoras &mdash; o piloto mede o impacto real</h2>
+            </div>
+            <div class="split reveal" style="max-width:min(90vw,850px);">
+                <div class="card" style="border-left:4px solid var(--orange);">
+                    <h3>Mais SQLs por BDR</h3>
+                    <p>Hoje a convers&atilde;o conta &rarr; SQL &eacute; 25%. De SQL pra Discovery j&aacute; &eacute; 75% &mdash; o time converte bem quando chega l&aacute;. O gargalo est&aacute; no topo. Se com prioriza&ccedil;&atilde;o e dossi&ecirc; a gente subir conta &rarr; SQL pra 35% (+10pp conservador), cada BDR gera <strong style="color:var(--orange);">+3 SQLs/m&ecirc;s</strong>.</p>
+                    <p style="margin-top:0.4em;font-size:var(--ts-small);">Com 6 BDRs rampados, s&atilde;o <strong style="color:var(--orange);">+18 SQLs/m&ecirc;s adicionais</strong> pro time (3 por BDR &times; 6). E como 75% viram Discovery, s&atilde;o ~13 Discoveries a mais.</p>
+                </div>
+                <div class="card" style="border-left:4px solid var(--purple);">
+                    <h3>Mais tempo ligando, menos pesquisando</h3>
+                    <p>Se o tempo de pesquisa cai de 40 min pra 5 min por conta, o BDR recupera <strong style="color:var(--purple);">~35 horas/m&ecirc;s</strong>. S&atilde;o horas que voltam pra liga&ccedil;&atilde;o, follow-up e qualifica&ccedil;&atilde;o &mdash; o trabalho que realmente gera SQL.</p>
+                    <p style="margin-top:0.4em;font-size:var(--ts-small);">Hoje o BDR faz ~15 liga&ccedil;&otilde;es/dia. Com menos pesquisa, pode chegar a 25-30.</p>
+                </div>
+            </div>
+            <div class="reveal center">
+                <div class="card outline" style="display:inline-block;max-width:650px;">
+                    <p style="color:var(--text-muted);font-size:var(--ts-small);">
+                        Esses n&uacute;meros s&atilde;o conservadores. O piloto de 30 dias com 2 BDRs vai medir o impacto real antes de qualquer compromisso. Voc&ecirc; faz a conta com os n&uacute;meros de verdade.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         11. POC DE 4 SEMANAS
+         ═══════════════════════════════════════ -->
+    <section class="slide" id="s11">
+        <img src="https://latamlist.com/wp-content/uploads/2025/03/V360-logo.png" alt="V360" class="logo">
+        <div class="slide-content stack-lg">
+            <div class="reveal">
+                <p class="label">COMO VAMOS TRABALHAR</p>
+                <h2>4 semanas &mdash; cada semana voc&ecirc; v&ecirc; progresso</h2>
+            </div>
+            <div class="timeline-h reveal">
+                <div class="phase now">
+                    <span class="phase-label">Semana 1</span>
+                    <h3 style="color:var(--text-light);">Setup + alinhamento</h3>
+                    <p>50 contas definidas em conjunto. Crit&eacute;rios de ranqueamento alinhados com voc&ecirc; e a Dai. Conex&atilde;o com a Cortex.</p>
+                </div>
+                <div class="phase next">
+                    <span class="phase-label">Semana 2</span>
+                    <h3>Primeiro batch</h3>
+                    <p>Contas enriquecidas com sinais + contatos mapeados com buying committee. BDRs come&ccedil;am a usar.</p>
+                </div>
+                <div class="phase next">
+                    <span class="phase-label">Semana 3</span>
+                    <h3>Resultados iniciais</h3>
+                    <p>Feedback dos BDRs: o que funcionou, o que ajustar. Calibra&ccedil;&atilde;o dos sinais com dados reais.</p>
+                </div>
+                <div class="phase next">
+                    <span class="phase-label">Semana 4</span>
+                    <h3>Apresentacao</h3>
+                    <p>Resultados, m&eacute;tricas antes vs depois, recomenda&ccedil;&atilde;o. Voc&ecirc; e o Iza&iacute;as decidem com total clareza.</p>
+                </div>
+            </div>
+            <p class="reveal" style="font-size:var(--ts-small);color:var(--text-muted);">Reuni&atilde;o semanal com a Dai &mdash; 30 min. Update semanal pra voc&ecirc;. N&atilde;o &eacute; caixa preta.</p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         12. INVESTIMENTO
+         ═══════════════════════════════════════ -->
+    <section class="slide white" id="s12">
+        <img src="https://latamlist.com/wp-content/uploads/2025/03/V360-logo.png" alt="V360" class="logo">
+        <div class="slide-content stack-lg" style="align-items:center;">
+            <div class="reveal center">
+                <p class="label">INVESTIMENTO</p>
+                <h2>Sem risco. Resultado primeiro.</h2>
+            </div>
+            <div class="pricing-grid reveal">
+                <div class="pricing-card">
+                    <div class="price-label">Primeiro m&ecirc;s</div>
+                    <div class="price">Gr&aacute;tis</div>
+                    <div class="price-label">Implementa&ccedil;&atilde;o completa + piloto com 2 BDRs. Sem cobran&ccedil;a at&eacute; voc&ecirc; ver o resultado.</div>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="price-label">Se decidir continuar</div>
+                    <div class="price" style="color:var(--text-light);">R$ 10K/m&ecirc;s</div>
+                    <div class="price-label">A partir do primeiro m&ecirc;s (retroativo). Consultoria completa: prioriza&ccedil;&atilde;o, enriquecimento, dossi&ecirc;, personaliza&ccedil;&atilde;o.</div>
+                </div>
+                <div class="pricing-card">
+                    <div class="price-label">Se n&atilde;o gostar</div>
+                    <div class="price">R$ 2,5K</div>
+                    <div class="price-label">Apenas custo operacional das ferramentas. Voc&ecirc; n&atilde;o gasta nada comigo se n&atilde;o fizer sentido.</div>
+                </div>
+            </div>
+            <div class="reveal center" style="max-width:600px;">
+                <div class="card orange" style="display:inline-block;">
+                    <p style="font-weight:600;font-size:var(--ts-h3);">1 deal a mais = R$ 27.500/mes.</p>
+                    <p>O projeto se paga 3x com um &uacute;nico fechamento adicional. E voc&ecirc;s est&atilde;o indo de 4 pra 12 AEs &mdash; a alavancagem s&oacute; cresce.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         13. O QUE PRECISO DE VOCES
+         ═══════════════════════════════════════ -->
+    <section class="slide" id="s13">
+        <img src="https://latamlist.com/wp-content/uploads/2025/03/V360-logo.png" alt="V360" class="logo">
+        <div class="slide-content stack-lg">
+            <div class="reveal">
+                <p class="label">PRA COME&Ccedil;AR</p>
+                <h2>O que preciso de voc&ecirc;s</h2>
+            </div>
+            <p class="reveal" style="max-width:600px;">Nada disso &eacute; complicado. S&atilde;o 5 coisas pra gente rodar o piloto sem fric&ccedil;&atilde;o:</p>
+            <div class="split reveal" style="max-width:min(90vw,800px);">
+                <div class="card purple">
+                    <h3>Do lado de voc&ecirc;s</h3>
+                    <ul class="checklist" style="margin-top:0.5em;">
+                        <li style="color:rgba(255,255,255,0.85);">Dono do projeto no dia a dia (Dai)</li>
+                        <li style="color:rgba(255,255,255,0.85);">2 BDRs pro piloto</li>
+                        <li style="color:rgba(255,255,255,0.85);">Acesso ao webhook da Cortex</li>
+                        <li style="color:rgba(255,255,255,0.85);">Acesso ao CRM pra retomadas</li>
+                        <li style="color:rgba(255,255,255,0.85);">Feedback semanal &mdash; o que funcionou, o que ajustar</li>
+                    </ul>
+                </div>
+                <div class="card orange-soft">
+                    <h3>Do meu lado</h3>
+                    <ul class="bullets" style="margin-top:0.5em;">
+                        <li style="color:var(--text);">Primeiro m&ecirc;s inteiro gr&aacute;tis, sem risco</li>
+                        <li style="color:var(--text);">Reuni&atilde;o semanal com a Dai</li>
+                        <li style="color:var(--text);">Update semanal pra voc&ecirc;</li>
+                        <li style="color:var(--text);">Apresenta&ccedil;&atilde;o no final do m&ecirc;s com m&eacute;tricas</li>
+                        <li style="color:var(--text);">Entrega acion&aacute;vel j&aacute; na semana 2</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         14. DÚVIDAS
+         ═══════════════════════════════════════ -->
+    <section class="slide dark" id="s14">
+        <img src="https://latamlist.com/wp-content/uploads/2025/03/V360-logo.png" alt="V360" class="logo">
+        <div class="slide-content center" style="justify-content:center;align-items:center;">
+            <h1 class="reveal" style="font-size:clamp(1.6rem,4.5vw,3.5rem);">D&uacute;vidas?</h1>
+            <div class="reveal" style="width:clamp(40px,6vw,60px);height:4px;background:var(--orange);border-radius:2px;margin:clamp(0.5rem,1.5vh,1rem) auto;"></div>
+            <p class="reveal" style="margin-top:var(--gap);font-size:var(--ts-small);opacity:0.5;">Hugo Mansur &mdash; Mar&ccedil;o 2026</p>
+        </div>
+    </section>
+
+    <script>
+        class S{constructor(){this.s=document.querySelectorAll('.slide');this.c=0;this.l=false;this.initDots();this.initObs();this.initKey();this.initWheel();this.initTouch();this.upProg();this.s[0].classList.add('visible');}
+        initDots(){const n=document.getElementById('navDots');this.s.forEach((_,i)=>{const d=document.createElement('button');d.className='nav-dot'+(i===0?' active':'');d.setAttribute('aria-label',`Slide ${i+1}`);d.addEventListener('click',()=>this.go(i));n.appendChild(d);});this.d=n.querySelectorAll('.nav-dot');}
+        initObs(){const o=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');this.c=Array.from(this.s).indexOf(x.target);this.upDots();this.upProg();}});},{threshold:0.5});this.s.forEach(s=>o.observe(s));}
+        initKey(){document.addEventListener('keydown',e=>{if(['ArrowRight','ArrowDown',' '].includes(e.key)){e.preventDefault();this.next();}else if(['ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();this.prev();}});}
+        initWheel(){document.addEventListener('wheel',e=>{if(this.l)return;this.l=true;e.deltaY>0?this.next():this.prev();setTimeout(()=>{this.l=false;},800);},{passive:true});}
+        initTouch(){let y=0;document.addEventListener('touchstart',e=>{y=e.touches[0].clientY;},{passive:true});document.addEventListener('touchend',e=>{const d=y-e.changedTouches[0].clientY;if(Math.abs(d)>50){d>0?this.next():this.prev();}},{passive:true});}
+        go(i){if(i>=0&&i<this.s.length){this.s[i].scrollIntoView({behavior:'smooth'});this.c=i;this.upDots();this.upProg();}}
+        next(){if(this.c<this.s.length-1)this.go(this.c+1);}
+        prev(){if(this.c>0)this.go(this.c-1);}
+        upDots(){this.d.forEach((d,i)=>d.classList.toggle('active',i===this.c));}
+        upProg(){document.getElementById('progressBar').style.width=((this.c+1)/this.s.length*100)+'%';}}
+        document.addEventListener('DOMContentLoaded',()=>new S());
+
+        /* Cursor spotlight — bola laranja suave */
+        (function(){
+            const c=document.createElement('div');
+            c.style.cssText='position:fixed;width:36px;height:36px;border-radius:50%;background:rgba(255,92,19,0.3);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:opacity 0.3s;opacity:0;';
+            document.body.appendChild(c);
+            document.addEventListener('mousemove',e=>{c.style.left=e.clientX+'px';c.style.top=e.clientY+'px';c.style.opacity='1';});
+            document.addEventListener('mouseleave',()=>{c.style.opacity='0';});
+        })();
+    </script>
+</body>
+</html>
